@@ -18,47 +18,46 @@ function playerPlay() {
 
 function playRound(yourPlay) {
   let compPlay = computerPlay();
+  let result = "";
   if (compPlay == yourPlay) {
-    console.log("You tied, try again!");
-    return;
+    result = "You tied, try again!";
   }
   if (compPlay == "scissors") {
     if (yourPlay == "paper") {
-      console.log("Scissors beats paper, you lose");
+      result = "Scissors beats paper, you lose";
     } else if (yourPlay == "rock") {
-      console.log("Rock beats scissors, you win!");
+      result = "Rock beats scissors, you win!";
     }
   } else if (compPlay == "paper") {
     if (yourPlay == "rock") {
-      console.log("Paper beats rock, you lose");
+      result = "Paper beats rock, you lose";
     } else if (yourPlay == "scissors") {
-      console.log("Scissors beats paper, you win!");
+      result = "Scissors beats paper, you win!";
     }
   } else if (compPlay == "rock") {
     if (yourPlay == "scissors") {
-      console.log("Rock beats scissors, you lose");
+      result = "Rock beats scissors, you lose";
     } else if (yourPlay == "paper") {
-      console.log("Paper beats rock, you win!");
+      result = "Paper beats rock, you win!";
     }
   }
 
-
-  return;
+  console.log(result);
+  return result;
 }
 
 // buttons is a node list. It looks and acts much like an array.
 const buttons = document.querySelectorAll("button");
-const results= document.querySelector("#results");
+const results = document.querySelector("#results");
 
 let rounds = 0;
 // we use the .forEach method to iterate through each button
 buttons.forEach((button) => {
   // and for each one we add a 'click' listener
-  button.addEventListener("click", () => {playRound(button.id)
+  button.addEventListener("click", () => {
     rounds++;
-results.innerHTML += "\n" + rounds;
-
-});
+    results.innerHTML += "\n Round " + rounds + ": " + playRound(button.id);
+  });
 });
 
 //playRound();
