@@ -16,35 +16,49 @@ function playerPlay() {
   return input;
 }
 
-function playRound() {
+function playRound(yourPlay) {
   let compPlay = computerPlay();
-  let yourPlay = playerPlay();
   if (compPlay == yourPlay) {
     console.log("You tied, try again!");
     return;
   }
-  if(compPlay == "scissors"){
-    if(yourPlay == "paper"){
-        console.log("You lose");
-    } else if(yourPlay== "rock"){
-        console.log("You win!");
+  if (compPlay == "scissors") {
+    if (yourPlay == "paper") {
+      console.log("Scissors beats paper, you lose");
+    } else if (yourPlay == "rock") {
+      console.log("Rock beats scissors, you win!");
     }
-  }else if(compPlay == "paper"){
-    if(yourPlay == "rock"){
-        console.log("You lose");
-    } else if(yourPlay== "scissors"){
-        console.log("You win!");
+  } else if (compPlay == "paper") {
+    if (yourPlay == "rock") {
+      console.log("Paper beats rock, you lose");
+    } else if (yourPlay == "scissors") {
+      console.log("Scissors beats paper, you win!");
     }
-  }else if(compPlay == "rock"){
-    if(yourPlay == "scissors"){
-        console.log("You lose");
-    } else if(yourPlay== "paper"){
-        console.log("You win!");
+  } else if (compPlay == "rock") {
+    if (yourPlay == "scissors") {
+      console.log("Rock beats scissors, you lose");
+    } else if (yourPlay == "paper") {
+      console.log("Paper beats rock, you win!");
     }
   }
+
+
   return;
 }
 
-for(let i = 0; i< 5; i++){
-    playRound();
-}
+// buttons is a node list. It looks and acts much like an array.
+const buttons = document.querySelectorAll("button");
+const results= document.querySelector("#results");
+
+let rounds = 0;
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+  // and for each one we add a 'click' listener
+  button.addEventListener("click", () => {playRound(button.id)
+    rounds++;
+results.innerHTML += "\n" + rounds;
+
+});
+});
+
+//playRound();
